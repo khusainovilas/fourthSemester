@@ -1,0 +1,36 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+\setmainfont{Libertinus Serif}
+
+\begin{document}
+
+Доказательство $S K K = I$
+
+Определим комбинаторы:
+
+\[K := \lambda x.\lambda y.x, \quad
+S := \lambda f.\lambda g.\lambda x. f\,x\,(g\,x), \quad
+I := \lambda x.x\]
+
+Шаг 1:
+
+\[S\,K\,K = (\lambda f.\lambda g.\lambda x. f\,x\,(g\,x))\,K\,K\to
+(\lambda g.\lambda x. K\,x\,(g\,x))\,K\]
+
+Шаг 2:
+
+\[(\lambda g.\lambda x. K\,x\,(g\,x))\,K\to
+\lambda x. K\,x\,(K\,x)\]
+
+Шаг 3:
+
+\[\lambda x. K\,x\,(K\,x)\to
+\lambda x. (\lambda y.x)\,(K\,x)\to
+\lambda x. x\]
+
+Заключение:
+
+\[S K K = I\]
+
+\end{document}
