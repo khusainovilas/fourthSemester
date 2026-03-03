@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+\setmainfont{Libertinus Serif}
+
+\begin{document}
+
+Приведение $\lambda$-терма
+
+Рассмотрим терм
+
+\[((\lambda a.(\lambda b.b\,b)(\lambda b.b\,b))b)\
+((\lambda c.(c\, b)) (\lambda a.a))\]
+
+Выполним последовательные $\beta$-редукции.
+
+Шаг 1. Редуцируем левую часть:
+
+\[((\lambda a.(\lambda b.b\,b)(\lambda b.b\,b))b)\to
+(\lambda b.b\,b)(\lambda b.b\,b)\]
+
+После этого весь терм принимает вид
+
+\[(\lambda b.b\,b)(\lambda b.b\,b)
+((\lambda c.(c\, b))(\lambda a.a))\]
+
+Шаг 2. Редуцируем правую часть:
+
+\[(\lambda c.(c\, b))(\lambda a.a)\to
+(\lambda a.a)b\]
+
+Получаем
+
+\[(\lambda b.b\,b)(\lambda b.b\,b)
+((\lambda a.a)\, b)\]
+
+Шаг 3. Выполняем ещё одну $\beta$-редукцию:
+
+\[(\lambda a.a)\, b \to b\]
+
+Терм:
+
+\[(\lambda b.b\,b)(\lambda b.b\,b) b\]
+
+Шаг 4. Рассмотрим выражение
+\[(\lambda b.b\,b)(\lambda b.b\,b)\]
+
+После $\beta$-редукции получаем
+
+\[(\lambda b.b\,b)(\lambda b.b\,b)\to
+(\lambda b.b\,b)(\lambda b.b\,b)\]
+
+то есть то же самое выражение.
+
+Таким образом, подтерм
+\[(\lambda b.b\,b)(\lambda b.b\,b)\]
+редуцируется сам в себя и порождает бесконечную последовательность редукций.
+
+Заключение:
+
+Данный $\lambda$-терм не имеет нормальной формы, так как содержит
+зацикливающийся подтерм (омега-комбинатор).
+
+\end{document}
