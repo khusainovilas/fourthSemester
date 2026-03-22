@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="OperatingSystem.fs" />
+    <Compile Include="Computer.fs" />
+    <Compile Include="Network.fs" />
+    <Compile Include="IRandomProvider.fs" />
+    <Compile Include="InfectionEngine.fs" />
+  </ItemGroup>
+
+</Project>
