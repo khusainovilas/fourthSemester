@@ -9,8 +9,8 @@
 
 Определим комбинаторы:
 
-\[K := \lambda x.\lambda y.x, \quad
-S := \lambda f.\lambda g.\lambda x. f\,x\,(g\,x), \quad
+\[K := \lambda x.\lambda y.x \quad
+S := \lambda f.\lambda g.\lambda x. f\,x\,(g\,x) \quad
 I := \lambda x.x\]
 
 Шаг 1:
@@ -25,9 +25,9 @@ I := \lambda x.x\]
 
 Шаг 3:
 
-\[\lambda x. K\,x\,(K\,x)\to
-\lambda x. (\lambda y.x)\,(K\,x)\to
-\lambda x. x\]
+\[\lambda x. K x (K x) 
+= \lambda x. (\lambda y. x) (K x) 
+\;\to\; \lambda x. x\]
 
 Заключение:
 
