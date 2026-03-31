@@ -1,10 +1,15 @@
 ﻿module PowerSeries
 
-let rec powerSeries n m = 
-    if n < 0 || m < 0 then []
-    else 
-        let rec buildSeries cur count list = 
-            if count = 0 then List.rev list 
-            else buildSeries (cur * 2) (count - 1) (cur :: list) 
+let powerSeries n m = 
+    if m < 0 then []
+    else
+        let rec buildSeries count acc =
+            if count = 0 then List.rev acc
+            else
+                let next =
+                    match acc with
+                    | [] -> pown 2.0 n
+                    | h :: _ -> h * 2.0
+                buildSeries (count - 1) (next :: acc)
 
-        buildSeries (pown 2 n) (m + 1) []
+        buildSeries (m + 1) []
