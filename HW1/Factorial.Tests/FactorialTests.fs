@@ -6,16 +6,16 @@ open Factorial
 
 [<Test>]
 let Factorial_PositiveNumber_ReturnsCorrectResult () =
-    factorial 5 |> should equal (Some 120)
-    factorial 12 |> should equal (Some 479001600)
+    factorial 5 |> should equal (Some 120I)
+    factorial 12 |> should equal (Some 479001600I)
 
 [<Test>]
 let Factorial_Zero_ReturnsOne () =
-    factorial 0 |> should equal (Some 1)
+    factorial 0 |> should equal (Some 1I)
 
 [<Test>]
 let Factorial_One_ReturnsOne () =
-    factorial 1 |> should equal (Some 1)
+    factorial 1 |> should equal (Some 1I)
 
 [<Test>]
 let Factorial_NegativeNumber_ReturnsNone () =
@@ -23,4 +23,4 @@ let Factorial_NegativeNumber_ReturnsNone () =
 
 [<Test>]
 let Factorial_NumberGreaterThanLimit_ReturnsNone () =
-    factorial 13 |> should equal None
+    factorial 13 |> should equal (Some 6227020800I)

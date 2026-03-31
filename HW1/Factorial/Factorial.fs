@@ -1,10 +1,10 @@
 ﻿module Factorial
 
-let rec factorial n = 
-    match n with
-    | n when n < 0 || n > 12 -> None
-    | 0 -> Some 1
-    | _ -> 
-        match factorial (n - 1) with 
-        | Some value -> Some (n * value)
-        | None -> None
+let factorial n =
+    if n < 0 then None
+    else
+        let rec loop n acc =
+            if n = 0 then acc
+            else loop (n - 1) (acc * bigint n)
+        
+        Some (loop n 1I)
