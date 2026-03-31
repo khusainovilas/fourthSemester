@@ -1,11 +1,9 @@
-﻿module SearchNumber
+﻿module FindNumber 
 
-let searchNumber list n = 
-    let rec loop list acc = 
+let findNumber list n = 
+    let rec findIndex list index = 
         match list with 
-        | [] -> -1 
-        | x :: xs -> 
-            match x = n with
-            | true -> acc
-            | false -> loop xs (acc + 1)
-    loop list 0
+        | [] -> None
+        | x :: _ when x = n -> Some index
+        | _ :: xs -> findIndex xs (index + 1)
+    findIndex list 0
