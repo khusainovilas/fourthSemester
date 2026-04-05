@@ -5,6 +5,6 @@ open FsCheck
 open PointFree
 
 [<Test>]
-let func_equivalentToPointFree () =
-    let prop x (l:int list) = func x l = funcPointFree x l
+let multiplyBy_original_equivalentToPointFree () =
+    let prop x (l:int list) = multiplyByOriginal x l = multiplyByPointFree x l
     Check.QuickThrowOnFailure prop
