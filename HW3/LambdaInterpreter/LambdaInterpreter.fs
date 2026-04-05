@@ -26,8 +26,8 @@ let rec substitute expression variableName value =
     | Lam (name, body) ->
         let bodyFree = freeVariables body
         let valueFree = freeVariables value
-        let forbidden = Set.union bodyFree valueFree
         if Set.contains name valueFree && Set.contains variableName bodyFree then
+            let forbidden = Set.union bodyFree valueFree
             let newName = generateFreshName (name + "'") forbidden
             let newBody = substitute body name (Var newName)
             Lam (newName, substitute newBody variableName value)
@@ -41,9 +41,8 @@ let rec reduce expression =
     match expression with
     | Var _ -> expression
     | Lam (param, body) -> Lam (param, reduce body)
-    | App (Lam (param, body), arg) ->
-        reduce (substitute body param (reduce arg))
     | App (func, arg) ->
         let f = reduce func
-        let a = reduce arg
-        App(f, a)
+        match f with
+        | Lam (param, body) -> reduce (substitute body param arg)
+        | _ -> App(f, reduce arg)
