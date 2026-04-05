@@ -14,5 +14,10 @@ open BracketSequence
 [<TestCase("(", false)>]
 [<TestCase(")", false)>]
 [<TestCase("{[()]}", true)>]
-let isCorrect_bracketSequences_returnsCorrect (s: string) expected =
-    isCorrect s |> should equal expected
+[<TestCase("(tro[]lolo){}", true)>]
+[<TestCase("a(b)c", true)>]
+[<TestCase("abc", true)>]
+[<TestCase("abc(]", false)>]
+[<TestCase("(abc)", true)>]
+let hasCorrectBrackets_bracketSequences_returnsCorrect (s: string) expected =
+    hasCorrectBrackets s |> should equal expected
