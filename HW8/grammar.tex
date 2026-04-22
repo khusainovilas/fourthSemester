@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage{fontspec}
+\usepackage{amsmath}
+\usepackage[a4paper,margin=1.5cm]{geometry}
+\setmainfont{Libertinus Serif}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+Язык лямбда-выражений с именованными определениями.
+
+\textbf{Пример:}
+\begin{verbatim}
+let S = \x y z.x z (y z)
+let K = \x y.x
+S K K
+\end{verbatim}
+\textbf{Грамматика:}
+\[\begin{aligned}
+Program &::= Definitions\ Expr \\
+Definitions &::= Definition\ Definitions \mid Definition \\
+Definition &::= \texttt{let}\ Var\ =\ Expr \\
+Expr &::= Lambda \mid Application \\
+Lambda &::= \texttt{\textbackslash}\ Vars\ .\ Expr \\
+Vars &::= Var\ Vars \mid Var \\
+Application &::= Atom\ ApplicationTail \\
+ApplicationTail &::= Atom\ ApplicationTail \mid Atom \\
+Atom &::= Var \mid (\ Expr\ )
+\end{aligned}\]
+\textbf{Свойства:}
+\textbf{Аппликация:}
+\[x\ y\ z = ((x\ y)\ z)\]
+\textbf{Множественные параметры:}
+\[\texttt{\textbackslash x y z. M}=
+\texttt{\textbackslash x.(\textbackslash y.(\textbackslash z. M))}\]
+\textbf{Приоритет:}
+\[\text{Atom} > \text{Application} > \text{Lambda}\]
+\texttt{let} не является допустимым именем переменной.
+
+\textbf{Вывод:}
+
+\textbf{Пример 1 (S K K):}
+\[\begin{aligned}
+S\ K\ K
+&\Rightarrow Application \\
+&\Rightarrow Atom\ ApplicationTail \\
+&\Rightarrow S\ K\ ApplicationTail \\
+&\Rightarrow S\ K\ K
+\end{aligned}\]
+\vspace{0.5em}
+\textbf{Пример 2 (лямбда-выражение):}
+\[\begin{aligned}
+\texttt{\textbackslash x y. x y}
+&\Rightarrow Lambda \\
+&\Rightarrow \texttt{\textbackslash}\ x\ y\ .\ Expr \\
+&\Rightarrow \texttt{\textbackslash}\ x\ y\ .\ x\ y
+\end{aligned}\]
+\vspace{0.5em}
+\textbf{Пример 3 (let K):}
+\[\begin{aligned}
+\texttt{let K = \textbackslash x y.x}
+&\Rightarrow Definition \\
+&\Rightarrow \texttt{let}\ K\ =\ Lambda \\
+&\Rightarrow \texttt{let}\ K\ =\ \texttt{\textbackslash} x\ y . x
+\end{aligned}\]
+\end{document}
