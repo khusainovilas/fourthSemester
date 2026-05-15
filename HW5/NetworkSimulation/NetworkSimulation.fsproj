@@ -7,10 +7,11 @@
 
   <ItemGroup>
     <Compile Include="OperatingSystem.fs" />
+    <Compile Include="IRandomProvider.fs" />
     <Compile Include="Computer.fs" />
     <Compile Include="Network.fs" />
-    <Compile Include="IRandomProvider.fs" />
     <Compile Include="InfectionEngine.fs" />
+    <Compile Include="Simulation.fs" />
   </ItemGroup>
 
 </Project>

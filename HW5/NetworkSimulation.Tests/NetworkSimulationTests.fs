@@ -13,10 +13,12 @@ open MockRandomProvider
 
 [<Test>]
 let step_probability1_spreadToNeighbors () =
+    let c0 = Computer(0, Windows())
+    c0.IsInfected <- true
     let computers = [
-        { Id = 0; OS = Windows; IsInfected = true }
-        { Id = 1; OS = Windows; IsInfected = false }
-        { Id = 2; OS = Windows; IsInfected = false }
+        c0
+        Computer(1, Windows())
+        Computer(2, Windows())
     ]
 
     let matrix = array2D [|
@@ -25,10 +27,7 @@ let step_probability1_spreadToNeighbors () =
         [| false; true;  false |]
     |]
 
-    let network = {
-        Computers = computers
-        AdjacencyMatrix = matrix
-    }
+    let network = Network(computers, matrix)
 
     let random = MockRandomProvider(0.0)
 
@@ -39,10 +38,12 @@ let step_probability1_spreadToNeighbors () =
     step2.Computers.[2].IsInfected |> should equal true
 
 [<Test>]
-let step_probability0_noSpread  () =
+let step_probability0_noSpread () =
+    let c0 = Computer(0, Windows())
+    c0.IsInfected <- true
     let computers = [
-        { Id = 0; OS = Windows; IsInfected = true }
-        { Id = 1; OS = Windows; IsInfected = false }
+        c0
+        Computer(1, Windows())
     ]
 
     let matrix = array2D [|
@@ -50,10 +51,7 @@ let step_probability0_noSpread  () =
         [| true;  false |]
     |]
 
-    let network = {
-        Computers = computers
-        AdjacencyMatrix = matrix
-    }
+    let network = Network(computers, matrix)
 
     let random = MockRandomProvider(1.0)
 
@@ -66,9 +64,9 @@ let step_probability0_noSpread  () =
 [<Test>]
 let step_noInitiallyInfected_noSpread () =
     let computers = [
-        { Id = 0; OS = Windows; IsInfected = false }
-        { Id = 1; OS = Linux; IsInfected = false }
-        { Id = 2; OS = MacOS; IsInfected = false }
+        Computer(0, Windows())
+        Computer(1, Linux())
+        Computer(2, MacOS())
     ]
 
     let matrix = array2D [|
@@ -77,10 +75,7 @@ let step_noInitiallyInfected_noSpread () =
         [| true;  true;  false |]
     |]
 
-    let network = {
-        Computers = computers
-        AdjacencyMatrix = matrix
-    }
+    let network = Network(computers, matrix)
 
     let random = MockRandomProvider(0.0)
 

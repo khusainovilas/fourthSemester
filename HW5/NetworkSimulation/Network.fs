@@ -2,7 +2,6 @@ module Network
 
 open Computer
 
-type Network = {
-    Computers: Computer list
-    AdjacencyMatrix: bool[,]
-}
+type Network(computers: Computer list, adjacencyMatrix: bool[,]) =
+    member _.Computers = computers
+    member _.AdjacencyMatrix = adjacencyMatrix
